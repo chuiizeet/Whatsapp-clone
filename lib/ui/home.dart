@@ -25,15 +25,15 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     return Scaffold(
 
       appBar: new AppBar(
-        title: new Text('WhatsApp Clone'),
+        title: new Text('WhatsApp Clone', style: new TextStyle(color: Colors.white)),
         backgroundColor: Colors.tealAccent.shade700,
         bottom: new TabBar(
           controller: _tabController,
           tabs: <Widget>[
-            new Tab(icon: new Icon(Icons.camera_alt)),
-            new Tab(text: 'CHATS'),
-            new Tab(text: 'STATUS'),
-            new Tab(text: 'CALLS'),
+            new Tab(icon: new Icon(Icons.camera_alt, color: Colors.white,)),
+            new Tab(child: new Text("CHATS", style: Theme.of(context).textTheme.button)),
+            new Tab(child: new Text("STATUS", style: Theme.of(context).textTheme.button)),
+            new Tab(child: new Text("CALLS", style: Theme.of(context).textTheme.button)),
           ],
         ),
       ),

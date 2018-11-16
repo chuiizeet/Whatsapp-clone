@@ -36,7 +36,7 @@ class _StatusState extends State<Status> {
                 style: new TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16.0,
-                  color: Theme.of(context).primaryColor
+                  color: Theme.of(context).accentColor
                 )
 
               ),

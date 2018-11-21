@@ -25,34 +25,31 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
       ),
       name: widget.name,
     );
-
     setState(() {
       _messages.insert(0, message);
       var data = messageData.firstWhere((t) => t.name == widget.name);
       data.message = message.text;
     });
     message.animationController.forward();
-
   }
-
   Widget _buildText() {
     return new Container(
       child: new Row(
         children: <Widget>[
-          new Flexible(
-            child: new TextField(
+          new Container(
+            child: new Flexible( 
+             child: new TextField(
               controller: _textController,
               decoration: new InputDecoration.collapsed(hintText: "Send message"),
             )
+          ),
           ),
           new Container(
             child: new IconButton(
               icon: new Icon(Icons.send),
               onPressed: (){
-
                 _handleSubmit(_textController.text);
                 _textController.clear();
-
               } 
             ),
           )
@@ -60,9 +57,6 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
       ),
     );
   }
-
-
-
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -70,26 +64,22 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
         iconTheme: IconThemeData(
           color: Colors.white
         ),
-      actions: <Widget>[
-        new IconButton(
-          icon: new Icon(Icons.videocam),
-          onPressed: (){},
-        ),
-        new IconButton(
-          icon: new Icon(Icons.call),
-          onPressed: (){},
-        ),
-        new IconButton(
-          icon: new Icon(Icons.more_vert),
-          onPressed: (){},
-        )
-      ],
+        actions: <Widget>[
+          new IconButton(
+            icon: new Icon(Icons.call),
+            onPressed: (){},
+      ),
+          new IconButton(
+            icon: new Icon(Icons.more_vert),
+            onPressed: (){},
+      )
+        ],
       title: new Container(
         child: new Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             new Container(
-              padding: const EdgeInsets.fromLTRB(0, 0, 3.0, 0),
+              // padding: const EdgeInsets.fromLTRB(0, 0, 3.0, 0),
               child: new Center(
                 child: CircleAvatar(
                 backgroundImage: NetworkImage(widget.profileImage),
@@ -99,16 +89,20 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
             ),
             new Container(
               padding: const EdgeInsets.only(left: 8.0),
-              child: new Center(
-                // child: new Text(widget.name, style: Theme.of(context).textTheme.title,),
-              )
+                child: new Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    new Center(
+                      child: new Text(widget.name, style: Theme.of(context).textTheme.title,),
+                    ),
+                    new Text("last seen. 18:00", style: new TextStyle(fontSize: 13.0, color: Colors.white, fontStyle: FontStyle.italic),),
+                  ],
+                ),
             ),
           ],
         )
-        
-
       ),
-
       backgroundColor: Colors.tealAccent.shade700,
       ),
       body: new Container(

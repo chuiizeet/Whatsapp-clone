@@ -3,6 +3,7 @@ import 'package:whatsapp_clone/ui/pages/calls.dart';
 import 'package:whatsapp_clone/ui/pages/camera.dart';
 import 'package:whatsapp_clone/ui/pages/status.dart';
 import 'package:whatsapp_clone/ui/pages/chats.dart';
+import 'package:whatsapp_clone/ui/pages/contacts.dart';
 
 
 class Home extends StatefulWidget {
@@ -25,7 +26,19 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     return Scaffold(
 
       appBar: new AppBar(
-        title: new Text('WhatsApp Clone', style: new TextStyle(color: Colors.white)),
+        title: new Text('WhatsApp UI Clone', style: new TextStyle(color: Colors.white)),
+        actions: <Widget>[
+          IconButton(
+            icon: new Icon(Icons.search),
+            color: Colors.white,
+            onPressed: (){},
+          ),
+          IconButton(
+            icon: new Icon(Icons.more_vert),
+            color: Colors.white,
+            onPressed: (){},
+          ),
+        ],
         backgroundColor: Colors.tealAccent.shade700,
         bottom: new TabBar(
           controller: _tabController,
@@ -45,6 +58,18 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           new Status(),
           new Calls()
         ],
+      ),
+      floatingActionButton: new FloatingActionButton(
+        backgroundColor: Theme.of(context).accentColor,
+        child: new Icon(
+          Icons.message,
+          color: Colors.white,
+        ),
+        onPressed: (){
+          var router = MaterialPageRoute(
+            builder: (BuildContext context) => new Contacts());
+            Navigator.of(context).push(router);
+        },
       ),
     );
 

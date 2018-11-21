@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
           labelColor: Colors.white     
         ),
         textTheme: TextTheme(
-          title: new TextStyle(color: Colors.white, fontSize: 18.0),
+          title: new TextStyle(color: Colors.white, fontSize: 16.0),
           body1: new TextStyle(color: Colors.black),
           button: new TextStyle(color: Colors.white),
         ),

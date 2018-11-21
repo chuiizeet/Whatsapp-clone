@@ -1,4 +1,6 @@
-# whatsapp_clone
+# Whatsapp UI clone :smiley:
 
-A new Flutter project.
-
+### Simple Whatsapp UI clone.
+ 
+## Screenshots
+![gif](https://i.imgur.com/KXF7J8Z.gif)

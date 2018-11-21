@@ -52,7 +52,7 @@ class _ChatsState extends State<Chats> {
             ),
             onTap: (){
               var route = new MaterialPageRoute(
-                builder: (BuildContext context) => ChatScreen(name: messageData[i].name)
+                builder: (BuildContext context) => ChatScreen(name: messageData[i].name, profileImage: messageData[i].imageUrl)
               );
               Navigator.of(context).push(route);
             },

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:whatsapp_clone/models/chat_model.dart';
 
 class ChatScreen extends StatefulWidget {
   final String name;
-  ChatScreen({this.name});
+  final String profileImage;
+  ChatScreen({this.name, this.profileImage});
   @override
   _ChatScreenState createState() => _ChatScreenState();
 }
@@ -26,6 +28,8 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
 
     setState(() {
       _messages.insert(0, message);
+      var data = messageData.firstWhere((t) => t.name == widget.name);
+      data.message = message.text;
     });
     message.animationController.forward();
 
@@ -38,6 +42,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
           new Flexible(
             child: new TextField(
               controller: _textController,
+              decoration: new InputDecoration.collapsed(hintText: "Send message"),
             )
           ),
           new Container(
@@ -62,7 +67,48 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: AppBar(
-      title: new Text(widget.name, style: Theme.of(context).textTheme.title,),
+        iconTheme: IconThemeData(
+          color: Colors.white
+        ),
+      actions: <Widget>[
+        new IconButton(
+          icon: new Icon(Icons.videocam),
+          onPressed: (){},
+        ),
+        new IconButton(
+          icon: new Icon(Icons.call),
+          onPressed: (){},
+        ),
+        new IconButton(
+          icon: new Icon(Icons.more_vert),
+          onPressed: (){},
+        )
+      ],
+      title: new Container(
+        child: new Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            new Container(
+              padding: const EdgeInsets.fromLTRB(0, 0, 3.0, 0),
+              child: new Center(
+                child: CircleAvatar(
+                backgroundImage: NetworkImage(widget.profileImage),
+                maxRadius: 22,
+              )
+              ),
+            ),
+            new Container(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: new Center(
+                // child: new Text(widget.name, style: Theme.of(context).textTheme.title,),
+              )
+            ),
+          ],
+        )
+        
+
+      ),
+
       backgroundColor: Colors.tealAccent.shade700,
       ),
       body: new Container(
@@ -70,6 +116,8 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
           children: <Widget>[
             new Flexible(
               child: new ListView.builder(
+                padding: new EdgeInsets.all(8.0),
+                reverse: true,
                 itemBuilder: (context, int index) => _messages[index],
                 itemCount: _messages.length,
               ),
@@ -98,30 +146,33 @@ class ChatMessage extends StatelessWidget {
         parent: animationController,
         curve: Curves.easeOut,
       ),
+    child: new Container(
+      margin: const EdgeInsets.symmetric(vertical: 10.0),
       child: new Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           new Container(
+            margin: const EdgeInsets.only(right: 16.0),
             child: new CircleAvatar(
-              backgroundColor: Theme.of(context).accentColor,
-              child: new Text(
-                name[0],
-                style: Theme.of(context).textTheme.title,
-              ),
+              backgroundImage: NetworkImage("https://avatars2.githubusercontent.com/u/23518097?s=400&u=91ac76bebfb16bdfffa49216ac336a0d615a1444&v=4"),
+              maxRadius: 25.0,
             ),
           ),
           new Expanded(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                new Text(name, style: new TextStyle(color: Colors.black)),
+                new Text("El chuy", style: new TextStyle(color: Colors.black, fontSize: 15.0, fontWeight: FontWeight.bold)),
                 new Container(
-                  child: new Text(text, style: new TextStyle(color: Colors.black))
+                  margin: const EdgeInsets.only(top: 6.0),
+                  child: new Text(text, style: new TextStyle(color: Colors.black, fontSize: 18.0))
                 )
               ],
             ),
           )
         ],
       ),
-      
+    ),
     );
   }
 }

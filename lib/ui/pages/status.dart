@@ -60,7 +60,6 @@ class _StatusState extends State<Status> {
               "18:18 PM"
             ),
           ),
-
         ],
       ),
     );

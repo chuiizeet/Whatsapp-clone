@@ -1,6 +1,6 @@
 class ChatModel{
   final String name;
-  final String message;
+  String message;
   final String time;
   final String imageUrl;
 

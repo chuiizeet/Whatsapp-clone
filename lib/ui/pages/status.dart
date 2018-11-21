@@ -16,10 +16,10 @@ class _StatusState extends State<Status> {
             leading: new CircleAvatar(
               maxRadius: 25,
               foregroundColor: Colors.deepPurple.shade100,
-              backgroundImage: NetworkImage(status[1].imageUrl),
+              backgroundImage: NetworkImage("https://avatars2.githubusercontent.com/u/23518097?s=400&u=91ac76bebfb16bdfffa49216ac336a0d615a1444&v=4"),
             ),
             title: new Text(
-              status[1].name,
+              "El chuy",
               style: new TextStyle(
                 fontWeight: FontWeight.bold
               ),
